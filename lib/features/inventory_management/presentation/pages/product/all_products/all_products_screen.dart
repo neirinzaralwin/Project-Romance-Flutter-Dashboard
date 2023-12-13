@@ -33,6 +33,7 @@ class _AllProductScreenState extends State<AllProductScreen> {
           children: [
             Expanded(
               child: CustomScrollView(
+                controller: ScrollController(),
                 slivers: [
                   AllProductAppBarWidget(horizontalPagePadding: horizontalPagePadding),
                   AllProductHeaderWidget(horizontalPagePadding: horizontalPagePadding, columnHeadStyle: columnHeadStyle),

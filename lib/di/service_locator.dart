@@ -5,10 +5,9 @@ import 'package:project_romance/core/exceptions/error_exceptions.dart';
 import 'package:project_romance/features/inventory_management/data/data_sources/inventory_api_service.dart';
 import 'package:project_romance/features/inventory_management/data/repository/inventory_impl_repository.dart';
 import 'package:project_romance/features/inventory_management/domain/repositories/inventory_repository.dart';
-import 'package:project_romance/features/inventory_management/domain/usecases/get_all_product.dart';
+import 'package:project_romance/features/inventory_management/domain/usecases/get_all_category.dart';
+import 'package:project_romance/features/inventory_management/presentation/pages/category/all_categories/bloc/all_category_bloc.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_bloc.dart';
-
-import '../features/inventory_management/presentation/pages/product/all_products/bloc/all_product_bloc.dart';
 
 final sl = GetIt.instance;
 serviceLocator() async {
@@ -52,9 +51,9 @@ serviceLocator() async {
   sl.registerSingleton<InventoryRepository>(InventoryImplRepository(sl<InventoryApiService>()));
 
   //UseCases
-  sl.registerSingleton<GetAllProductUseCase>(GetAllProductUseCase(sl<InventoryRepository>()));
+  sl.registerSingleton<GetAllCategoryUseCase>(GetAllCategoryUseCase(sl<InventoryRepository>()));
 
   //Blocs
   sl.registerFactory<LayoutBloc>(() => LayoutBloc());
-  sl.registerFactory<AllProductBloc>(() => AllProductBloc(sl<GetAllProductUseCase>()));
+  sl.registerFactory<AllCategoryBloc>(() => AllCategoryBloc(sl<GetAllCategoryUseCase>()));
 }

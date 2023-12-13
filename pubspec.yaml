@@ -35,6 +35,7 @@ dependencies:
 
   # other packages
   cached_network_image: ^3.3.0
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:
