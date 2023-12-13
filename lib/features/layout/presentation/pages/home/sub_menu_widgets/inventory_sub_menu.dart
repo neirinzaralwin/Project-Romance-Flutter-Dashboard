@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:project_romance/configs/routes/app_pages.dart';
-import 'package:project_romance/configs/routes/app_routes.dart';
 import 'package:project_romance/features/layout/presentation/pages/home/sub_menu_widgets/widgets/sub_menu_title.dart';
 
 import '../../../../../../configs/text_style/custom_text_style.dart';

@@ -5,11 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_bloc.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_event.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_state.dart';
-import '../../../../../configs/dimension/dimension_manager.dart';
 import '../../../../../configs/text_style/custom_text_style.dart';
 import '../../../../../configs/theme/app_colors.dart';
 import '../../../../../di/service_locator.dart';
-import 'sub_menu_layout.dart';
 import 'package:collection/collection.dart';
 
 class HomeLayout extends StatelessWidget {

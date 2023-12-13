@@ -5,7 +5,6 @@ import 'package:project_romance/features/inventory_management/presentation/pages
 import 'package:project_romance/features/inventory_management/presentation/pages/product/product_dependency.dart';
 import 'package:project_romance/features/inventory_management/presentation/pages/product/product_detail/product_detail_screen.dart';
 import 'package:project_romance/features/layout/presentation/pages/home/home_layout.dart';
-import 'package:project_romance/features/layout/presentation/pages/home/sub_menu_layout.dart';
 import 'package:project_romance/features/layout/presentation/pages/home/sub_menu_widgets/inventory_sub_menu.dart';
 
 import '../../features/guide/welcome/pages/welcome_screen.dart';
