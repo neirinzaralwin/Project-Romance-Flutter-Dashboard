@@ -33,8 +33,12 @@ dependencies:
   # json format converter
   json_annotation: ^4.8.1
 
+  # color picker
+  cyclop: ^0.7.0
+
   # other packages
   cached_network_image: ^3.3.0
+  animated_custom_dropdown: ^2.0.0
   collection: ^1.17.2
 
 dev_dependencies:
