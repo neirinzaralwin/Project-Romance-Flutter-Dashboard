@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_romance/configs/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 
 class SubMenuTitle extends StatelessWidget {
   final String title;
@@ -13,7 +13,8 @@ class SubMenuTitle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(title, style: headlineSmall.copyWith(fontWeight: FontWeight.bold)),
+          Text(title,
+              style: headlineSmall.copyWith(fontWeight: FontWeight.bold)),
         ],
       ),
     );

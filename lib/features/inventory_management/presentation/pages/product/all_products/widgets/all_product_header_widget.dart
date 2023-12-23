@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project_romance/configs/dimension/dimension_manager.dart';
-import 'package:project_romance/configs/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
 
 class AllProductHeaderWidget extends StatelessWidget {
@@ -29,7 +29,8 @@ class AllProductHeaderWidget extends StatelessWidget {
               children: [
                 Text(
                   "Products",
-                  style: headlineLarge.copyWith(fontWeight: FontWeight.bold, color: AppColor.charcoal),
+                  style: headlineLarge.copyWith(
+                      fontWeight: FontWeight.bold, color: AppColor.charcoal),
                 ),
                 Row(
                   children: [
@@ -54,12 +55,16 @@ class AllProductHeaderWidget extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 5),
               padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: AppColor.primaryColor, boxShadow: [
-                BoxShadow(
-                  color: AppColor.black.withOpacity(0.1), spreadRadius: 1, blurRadius: 10,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ]),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: AppColor.primaryColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColor.black.withOpacity(0.1), spreadRadius: 1,
+                      blurRadius: 10,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ]),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -80,7 +85,11 @@ class AllProductHeaderWidget extends StatelessWidget {
     );
   }
 
-  Widget _responsiveButton({required String text, required IconData iconData, required VoidCallback onPressed, required double screenWidth}) {
+  Widget _responsiveButton(
+      {required String text,
+      required IconData iconData,
+      required VoidCallback onPressed,
+      required double screenWidth}) {
     if (screenWidth > 900) {
       return FilledButton.icon(
         style: FilledButton.styleFrom(backgroundColor: AppColor.charcoal),
@@ -97,7 +106,8 @@ class AllProductHeaderWidget extends StatelessWidget {
             color: AppColor.charcoal,
             borderRadius: BorderRadius.circular(50),
           ),
-          child: FaIcon(iconData, size: labelLarge.fontSize, color: AppColor.warmWhite)),
+          child: FaIcon(iconData,
+              size: labelLarge.fontSize, color: AppColor.warmWhite)),
     );
   }
 

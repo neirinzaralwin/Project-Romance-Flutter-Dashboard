@@ -72,11 +72,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               fillColor: widget.fillColor ?? AppColor.swatch,
               filled: widget.fillColor == null ? false : true,
               alignLabelWithHint: true,
-              contentPadding: EdgeInsets.symmetric(horizontal: widget.maxLine != null ? DM.width10 : DM.width10, vertical: DM.width10 + DM.width5),
+              contentPadding: EdgeInsets.symmetric(
+                  horizontal: widget.maxLine != null ? DM.width10 : DM.width10,
+                  vertical: DM.width10 + DM.width5),
               labelText: widget.text,
               hintText: widget.hint,
-              labelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: widget.textColor ?? AppColor.swatch),
-              hintStyle: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColor.grey),
+              labelStyle: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: widget.textColor ?? AppColor.swatch),
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: AppColor.grey),
               prefixIcon: widget.prefixIcon != null
                   ? Icon(
                       widget.prefixIcon,
@@ -91,39 +99,56 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                           isObscure = !isObscure;
                         });
                       },
-                      icon: Icon(isObscure ? Icons.visibility : Icons.visibility_off, color: widget.iconColor ?? AppColor.swatch))
+                      icon: Icon(
+                          isObscure ? Icons.visibility : Icons.visibility_off,
+                          color: widget.iconColor ?? AppColor.swatch))
                   : null,
               enabledBorder: widget.enableBorder!
                   ? OutlineInputBorder(
-                      borderSide: BorderSide(color: widget.enabledBorderColor ?? AppColor.swatch, width: 1.5),
+                      borderSide: BorderSide(
+                          color: widget.enabledBorderColor ?? AppColor.swatch,
+                          width: 1.5),
                       borderRadius: BorderRadius.circular(10.0),
                     )
                   : null,
-              floatingLabelStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: widget.labelColor ?? AppColor.black),
+              floatingLabelStyle: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: widget.labelColor ?? AppColor.black),
               focusedBorder: widget.enableBorder!
                   ? OutlineInputBorder(
-                      borderSide: BorderSide(color: widget.focusBorderColor ?? AppColor.primaryColorLight, width: 2),
+                      borderSide: BorderSide(
+                          color: widget.focusBorderColor ??
+                              AppColor.primaryColorLight,
+                          width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     )
                   : null,
               focusedErrorBorder: widget.enableBorder!
                   ? OutlineInputBorder(
-                      borderSide: BorderSide(color: widget.errorBorderColor ?? AppColor.redColor, width: 1.5),
+                      borderSide: BorderSide(
+                          color: widget.errorBorderColor ?? AppColor.redColor,
+                          width: 1.5),
                       borderRadius: BorderRadius.circular(10.0),
                     )
                   : null,
               errorBorder: widget.enableBorder!
                   ? OutlineInputBorder(
-                      borderSide: BorderSide(color: widget.errorBorderColor ?? AppColor.redColor, width: 1.5),
+                      borderSide: BorderSide(
+                          color: widget.errorBorderColor ?? AppColor.redColor,
+                          width: 1.5),
                       borderRadius: BorderRadius.circular(10.0),
                     )
                   : null,
-              errorStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: widget.errorBorderColor ?? AppColor.redColor),
+              errorStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: widget.errorBorderColor ?? AppColor.redColor),
             )
           : InputDecoration(
               filled: true,
               fillColor: widget.fillColor,
-              contentPadding: EdgeInsets.symmetric(horizontal: widget.maxLine != null ? DM.width10 : DM.width10, vertical: DM.width10 + DM.width5),
+              contentPadding: EdgeInsets.symmetric(
+                  horizontal: widget.maxLine != null ? DM.width10 : DM.width10,
+                  vertical: DM.width10 + DM.width5),
               prefixIcon: widget.prefixIcon != null
                   ? Icon(
                       widget.prefixIcon,
@@ -138,14 +163,23 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                           isObscure = !isObscure;
                         });
                       },
-                      icon: Icon(isObscure ? Icons.visibility : Icons.visibility_off, color: widget.iconColor ?? AppColor.swatch))
+                      icon: Icon(
+                          isObscure ? Icons.visibility : Icons.visibility_off,
+                          color: widget.iconColor ?? AppColor.swatch))
                   : null,
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10.0), borderSide: BorderSide.none),
-              hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColor.grey),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: BorderSide.none),
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(color: AppColor.grey),
               hintText: widget.hint,
             ),
       keyboardType: widget.isDigitOnly ? TextInputType.number : null,
-      inputFormatters: widget.isDigitOnly ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly] : null,
+      inputFormatters: widget.isDigitOnly
+          ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
+          : null,
     );
   }
 }

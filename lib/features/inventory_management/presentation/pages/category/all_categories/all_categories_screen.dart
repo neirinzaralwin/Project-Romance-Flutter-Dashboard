@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_romance/configs/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
 import 'package:project_romance/di/service_locator.dart';
 import 'package:project_romance/features/inventory_management/presentation/pages/category/all_categories/bloc/all_category_bloc.dart';
@@ -23,12 +23,16 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double horizontalPagePadding = screenWidth * 0.03;
     return BlocProvider<AllCategoryBloc>(
-      create: (context) => sl<AllCategoryBloc>()..add(const GetAllCategoryEvent()),
+      create: (context) =>
+          sl<AllCategoryBloc>()..add(const GetAllCategoryEvent()),
       child: Scaffold(
         body: CustomScrollView(
           slivers: [
-            AllCategoryAppBarWidget(horizontalPagePadding: horizontalPagePadding),
-            AllCategoryHeaderWidget(horizontalPagePadding: horizontalPagePadding, columnHeadStyle: columnHeadStyle),
+            AllCategoryAppBarWidget(
+                horizontalPagePadding: horizontalPagePadding),
+            AllCategoryHeaderWidget(
+                horizontalPagePadding: horizontalPagePadding,
+                columnHeadStyle: columnHeadStyle),
             const AllCategoryListView()
           ],
         ),

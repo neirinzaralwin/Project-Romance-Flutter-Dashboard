@@ -1,9 +1,9 @@
 // ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
-import 'package:project_romance/core/common/custom_text_field.dart';
+import 'package:project_romance/core/shared_components/custom_text_field.dart';
 
-import '../../../../../../configs/text_style/custom_text_style.dart';
+import '../../../../../../core/shared_components/text_style/custom_text_style.dart';
 
 class ProductCreateScreen extends StatefulWidget {
   const ProductCreateScreen({super.key});
@@ -77,7 +77,10 @@ class _ProductCreateScreenState extends State<ProductCreateScreen> {
                       children: [
                         Text(
                           "Digital Product?",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppColor.warmWhite),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: AppColor.warmWhite),
                         ),
                         const SizedBox(width: 10),
                         Checkbox(

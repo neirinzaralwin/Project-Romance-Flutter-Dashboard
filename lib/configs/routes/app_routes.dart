@@ -1,6 +1,9 @@
 class AppRoutes {
   static String welcome = "welcome";
 
+  // support
+  static String support = "support";
+
   // inventory
   static String inventory = "inventory";
 

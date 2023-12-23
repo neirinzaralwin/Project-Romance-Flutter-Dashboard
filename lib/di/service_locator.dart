@@ -5,9 +5,9 @@ import 'package:project_romance/core/exceptions/error_exceptions.dart';
 import 'package:project_romance/features/inventory_management/data/data_sources/inventory_api_service.dart';
 import 'package:project_romance/features/inventory_management/data/repository/inventory_impl_repository.dart';
 import 'package:project_romance/features/inventory_management/domain/repositories/inventory_repository.dart';
-import 'package:project_romance/features/inventory_management/domain/usecases/get_all_category.dart';
-import 'package:project_romance/features/inventory_management/presentation/pages/category/all_categories/bloc/all_category_bloc.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_bloc.dart';
+import 'package:project_romance/features/inventory_management/presentation/pages/category/category_dependency.dart';
+import 'package:project_romance/features/inventory_management/presentation/pages/product/product_dependency.dart';
 
 final sl = GetIt.instance;
 serviceLocator() async {
@@ -33,7 +33,8 @@ serviceLocator() async {
             return handler.next(ErrorException(exception).connectionTimeout);
           case DioExceptionType.unknown:
             debugPrint("Resolved");
-            return handler.resolve(Response(requestOptions: exception.requestOptions));
+            return handler
+                .resolve(Response(requestOptions: exception.requestOptions));
           default:
         }
 
@@ -48,12 +49,15 @@ serviceLocator() async {
   sl.registerSingleton<InventoryApiService>(InventoryApiService(sl<Dio>()));
 
   // Inventory
-  sl.registerSingleton<InventoryRepository>(InventoryImplRepository(sl<InventoryApiService>()));
+  sl.registerSingleton<InventoryRepository>(
+      InventoryImplRepository(sl<InventoryApiService>()));
 
-  //UseCases
-  sl.registerSingleton<GetAllCategoryUseCase>(GetAllCategoryUseCase(sl<InventoryRepository>()));
+  // UseCases
 
-  //Blocs
+  // Blocs
   sl.registerFactory<LayoutBloc>(() => LayoutBloc());
-  sl.registerFactory<AllCategoryBloc>(() => AllCategoryBloc(sl<GetAllCategoryUseCase>()));
+
+  // Custom dependencies
+  ProductDependency.register();
+  CategoryDependency.register();
 }

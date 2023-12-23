@@ -1,6 +1,6 @@
 import 'package:cyclop/cyclop.dart';
 import 'package:flutter/material.dart';
-import 'package:project_romance/configs/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
 import 'package:project_romance/features/inventory_management/presentation/pages/product/product_detail/widgets/product_detail_app_bar.dart';
 import 'widgets/product_detail_category.dart';
@@ -50,34 +50,47 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 children: [
                                   Text(
                                     "Color",
-                                    style: bodyLarge.copyWith(fontWeight: FontWeight.bold),
+                                    style: bodyLarge.copyWith(
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   const SizedBox(height: 20),
                                   Container(
                                     padding: const EdgeInsets.all(10),
-                                    decoration: BoxDecoration(color: AppColor.white, borderRadius: BorderRadius.circular(15), boxShadow: [
-                                      BoxShadow(
-                                        color: AppColor.black.withOpacity(0.1), spreadRadius: 3, blurRadius: 10,
-                                        offset: const Offset(0, 3), // changes position of shadow
-                                      )
-                                    ]),
+                                    decoration: BoxDecoration(
+                                        color: AppColor.white,
+                                        borderRadius: BorderRadius.circular(15),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color:
+                                                AppColor.black.withOpacity(0.1),
+                                            spreadRadius: 3,
+                                            blurRadius: 10,
+                                            offset: const Offset(0,
+                                                3), // changes position of shadow
+                                          )
+                                        ]),
                                     width: 450,
                                     child: Row(
                                       children: [
                                         Expanded(
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
                                               Container(
                                                 width: 30,
                                                 height: 30,
-                                                decoration: BoxDecoration(shape: BoxShape.circle, color: pickedColor),
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: pickedColor),
                                               ),
                                               const SizedBox(width: 8),
                                               Container(
                                                 width: 30,
                                                 height: 30,
-                                                decoration: const BoxDecoration(shape: BoxShape.circle, color: AppColor.blueGrey),
+                                                decoration: const BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    color: AppColor.blueGrey),
                                               ),
                                             ],
                                           ),
@@ -90,20 +103,33 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                                 builder: (context) {
                                                   return Dialog(
                                                     child: ColorPicker(
-                                                      selectedColor: pickedColor,
-                                                      onColorSelected: (value) => setState(() => pickedColor = value),
-                                                      config: const ColorPickerConfig(
+                                                      selectedColor:
+                                                          pickedColor,
+                                                      onColorSelected:
+                                                          (value) => setState(
+                                                              () =>
+                                                                  pickedColor =
+                                                                      value),
+                                                      config:
+                                                          const ColorPickerConfig(
                                                         enableLibrary: true,
                                                         enableEyePicker: false,
                                                       ),
-                                                      onClose: Navigator.of(context).pop,
+                                                      onClose:
+                                                          Navigator.of(context)
+                                                              .pop,
                                                       onEyeDropper: () {},
                                                     ),
                                                   );
                                                 },
                                               );
                                             },
-                                            child: Text("Pick color", style: bodyMedium.copyWith(color: AppColor.primaryColor, fontWeight: FontWeight.bold)))
+                                            child: Text("Pick color",
+                                                style: bodyMedium.copyWith(
+                                                    color:
+                                                        AppColor.primaryColor,
+                                                    fontWeight:
+                                                        FontWeight.bold)))
                                       ],
                                     ),
                                   ),
@@ -126,8 +152,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text("Show the product ", style: bodyMedium.copyWith(fontWeight: FontWeight.bold)),
-        Switch.adaptive(applyCupertinoTheme: true, activeColor: AppColor.greenDark, value: true, onChanged: (bool newValue) {}),
+        Text("Show the product ",
+            style: bodyMedium.copyWith(fontWeight: FontWeight.bold)),
+        Switch.adaptive(
+            applyCupertinoTheme: true,
+            activeColor: AppColor.greenDark,
+            value: true,
+            onChanged: (bool newValue) {}),
       ],
     );
   }

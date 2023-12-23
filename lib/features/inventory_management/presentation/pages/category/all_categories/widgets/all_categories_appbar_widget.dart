@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project_romance/configs/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
-import 'package:project_romance/core/common/custom_text_field.dart';
+import 'package:project_romance/core/shared_components/custom_text_field.dart';
 
 class AllCategoryAppBarWidget extends StatelessWidget {
   final double horizontalPagePadding;
-  const AllCategoryAppBarWidget({super.key, required this.horizontalPagePadding});
+  const AllCategoryAppBarWidget(
+      {super.key, required this.horizontalPagePadding});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,8 @@ class AllCategoryAppBarWidget extends StatelessWidget {
         FilledButton.tonalIcon(
           style: FilledButton.styleFrom(backgroundColor: AppColor.charcoal),
           onPressed: () {},
-          icon: FaIcon(FontAwesomeIcons.sliders, size: labelLarge.fontSize, color: AppColor.warmWhite),
+          icon: FaIcon(FontAwesomeIcons.sliders,
+              size: labelLarge.fontSize, color: AppColor.warmWhite),
           label: const Text(
             "Filter",
             style: TextStyle(color: AppColor.warmWhite),

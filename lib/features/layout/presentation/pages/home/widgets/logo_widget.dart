@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
 
-import '../../../../../../configs/text_style/custom_text_style.dart';
+import '../../../../../../core/shared_components/text_style/custom_text_style.dart';
 
 class LogoWidget extends StatelessWidget {
   final Function(bool) onClick;
@@ -13,7 +13,9 @@ class LogoWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        IconButton(onPressed: () => onClick(!isShown), icon: const Icon(Icons.menu, color: AppColor.white)),
+        IconButton(
+            onPressed: () => onClick(!isShown),
+            icon: const Icon(Icons.menu, color: AppColor.white)),
         Center(
           child: (isShown)
               ? FutureBuilder(

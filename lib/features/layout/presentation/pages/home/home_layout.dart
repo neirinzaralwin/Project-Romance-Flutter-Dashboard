@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_bloc.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_event.dart';
 import 'package:project_romance/features/layout/presentation/bloc/layout_state.dart';
-import '../../../../../configs/text_style/custom_text_style.dart';
+import '../../../../../core/shared_components/text_style/custom_text_style.dart';
 import '../../../../../configs/theme/app_colors.dart';
 import '../../../../../di/service_locator.dart';
 import 'package:collection/collection.dart';
@@ -23,7 +23,8 @@ class HomeLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return BlocProvider<LayoutBloc>(
-      create: (context) => sl<LayoutBloc>()..add(const ChangeSubMenuLayoutEvent(0)),
+      create: (context) =>
+          sl<LayoutBloc>()..add(const ChangeSubMenuLayoutEvent(0)),
       child: Scaffold(
         floatingActionButton: (width <= 768)
             ? FloatingActionButton(
@@ -41,7 +42,8 @@ class HomeLayout extends StatelessWidget {
               builder: (context, constraint) {
                 return SingleChildScrollView(
                   child: ConstrainedBox(
-                    constraints: BoxConstraints(minHeight: constraint.maxHeight),
+                    constraints:
+                        BoxConstraints(minHeight: constraint.maxHeight),
                     child: IntrinsicHeight(
                       child: Container(
                         margin: const EdgeInsets.only(top: 10),
@@ -54,11 +56,23 @@ class HomeLayout extends StatelessWidget {
                                 labelType: NavigationRailLabelType.all,
                                 backgroundColor: AppColor.secondaryColor,
                                 indicatorColor: AppColor.primaryColor,
-                                unselectedIconTheme:
-                                    IconThemeData(color: AppColor.charcoal, opacity: 1, size: Theme.of(context).textTheme.bodyMedium?.fontSize),
-                                unselectedLabelTextStyle: labelMedium.copyWith(color: AppColor.charcoal),
-                                selectedLabelTextStyle: labelMedium.copyWith(color: AppColor.charcoal),
-                                selectedIconTheme: IconThemeData(color: AppColor.warmWhite, size: Theme.of(context).textTheme.bodyMedium?.fontSize),
+                                unselectedIconTheme: IconThemeData(
+                                    color: AppColor.charcoal,
+                                    opacity: 1,
+                                    size: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.fontSize),
+                                unselectedLabelTextStyle: labelMedium.copyWith(
+                                    color: AppColor.charcoal),
+                                selectedLabelTextStyle: labelMedium.copyWith(
+                                    color: AppColor.charcoal),
+                                selectedIconTheme: IconThemeData(
+                                    color: AppColor.warmWhite,
+                                    size: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.fontSize),
                                 destinations: const [
                                   NavigationRailDestination(
                                     icon: FaIcon(FontAwesomeIcons.tableColumns),
@@ -85,7 +99,8 @@ class HomeLayout extends StatelessWidget {
                                 onDestinationSelected: (newValue) {
                                   navigationShell.goBranch(
                                     newValue,
-                                    initialLocation: newValue == navigationShell.currentIndex,
+                                    initialLocation: newValue ==
+                                        navigationShell.currentIndex,
                                   );
                                 });
                           },
@@ -109,7 +124,8 @@ class HomeLayout extends StatelessWidget {
 }
 
 class AnimatedBranchContainer extends StatelessWidget {
-  const AnimatedBranchContainer({super.key, required this.currentIndex, required this.children});
+  const AnimatedBranchContainer(
+      {super.key, required this.currentIndex, required this.children});
   final int currentIndex;
   final List<Widget> children;
 

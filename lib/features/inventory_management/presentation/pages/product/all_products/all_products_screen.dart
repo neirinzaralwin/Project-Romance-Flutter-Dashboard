@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_romance/configs/dimension/dimension_manager.dart';
-import 'package:project_romance/configs/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
 import 'package:project_romance/di/service_locator.dart';
 import '../product_related/product_related_screen.dart';
@@ -26,7 +26,8 @@ class _AllProductScreenState extends State<AllProductScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
     double horizontalPagePadding = screenWidth * 0.03;
     return BlocProvider<AllProductBloc>(
-      create: (context) => sl<AllProductBloc>()..add(const GetAllProductsEvent()),
+      create: (context) =>
+          sl<AllProductBloc>()..add(const GetAllProductsEvent()),
       child: Scaffold(
         body: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,8 +36,11 @@ class _AllProductScreenState extends State<AllProductScreen> {
               child: CustomScrollView(
                 controller: ScrollController(),
                 slivers: [
-                  AllProductAppBarWidget(horizontalPagePadding: horizontalPagePadding),
-                  AllProductHeaderWidget(horizontalPagePadding: horizontalPagePadding, columnHeadStyle: columnHeadStyle),
+                  AllProductAppBarWidget(
+                      horizontalPagePadding: horizontalPagePadding),
+                  AllProductHeaderWidget(
+                      horizontalPagePadding: horizontalPagePadding,
+                      columnHeadStyle: columnHeadStyle),
                   const AllProductListView()
                 ],
               ),

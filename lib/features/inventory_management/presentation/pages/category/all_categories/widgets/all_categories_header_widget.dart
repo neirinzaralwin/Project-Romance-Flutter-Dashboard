@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project_romance/configs/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 import 'package:project_romance/configs/theme/app_colors.dart';
 import 'package:project_romance/features/inventory_management/presentation/pages/category/all_categories/bloc/all_category_bloc.dart';
 import 'package:project_romance/features/inventory_management/presentation/pages/category/all_categories/bloc/all_category_state.dart';
@@ -34,14 +34,17 @@ class AllCategoryHeaderWidget extends StatelessWidget {
                   children: [
                     Text(
                       "Categories",
-                      style: headlineLarge.copyWith(fontWeight: FontWeight.bold, color: AppColor.charcoal),
+                      style: headlineLarge.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColor.charcoal),
                     ),
                     BlocBuilder<AllCategoryBloc, AllCategoryState>(
                       builder: ((context, state) {
                         if (state is AllCategorySuccess) {
                           return Text(
                             "${state.paginatedAllCategories?.total ?? 0} categories",
-                            style: bodyMedium.copyWith(color: AppColor.thirdColor),
+                            style:
+                                bodyMedium.copyWith(color: AppColor.thirdColor),
                           );
                         }
                         return const SizedBox.shrink();
@@ -72,12 +75,16 @@ class AllCategoryHeaderWidget extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 5),
               padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: AppColor.primaryColor, boxShadow: [
-                BoxShadow(
-                  color: AppColor.black.withOpacity(0.1), spreadRadius: 1, blurRadius: 10,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ]),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: AppColor.primaryColor,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColor.black.withOpacity(0.1), spreadRadius: 1,
+                      blurRadius: 10,
+                      offset: const Offset(0, 3), // changes position of shadow
+                    ),
+                  ]),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -96,7 +103,11 @@ class AllCategoryHeaderWidget extends StatelessWidget {
     );
   }
 
-  Widget _responsiveButton({required String text, required IconData iconData, required VoidCallback onPressed, required double screenWidth}) {
+  Widget _responsiveButton(
+      {required String text,
+      required IconData iconData,
+      required VoidCallback onPressed,
+      required double screenWidth}) {
     if (screenWidth > 900) {
       return FilledButton.icon(
         style: FilledButton.styleFrom(backgroundColor: AppColor.charcoal),
@@ -113,7 +124,8 @@ class AllCategoryHeaderWidget extends StatelessWidget {
             color: AppColor.charcoal,
             borderRadius: BorderRadius.circular(50),
           ),
-          child: FaIcon(iconData, size: labelLarge.fontSize, color: AppColor.warmWhite)),
+          child: FaIcon(iconData,
+              size: labelLarge.fontSize, color: AppColor.warmWhite)),
     );
   }
 
