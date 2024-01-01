@@ -13,6 +13,7 @@ class Product extends ProductEntity {
     List<String>? images,
     String? name,
     int? price,
+    int? stock,
     String? description,
     bool? isDigital,
   }) : super(
@@ -24,28 +25,30 @@ class Product extends ProductEntity {
           images: images,
           name: name,
           price: price,
+          stock: stock,
           description: description,
           isDigital: isDigital,
         );
-  // // ---------------------------------------------------------------------------
-  // // JSON
-  // // ---------------------------------------------------------------------------
-  // factory Product.fromRawJson(String str) => Product.fromMap(json.decode(str));
-  // String toRawJson() => json.encode(toMap());
 
-  // ---------------------------------------------------------------------------
-  // Maps
-  // ---------------------------------------------------------------------------
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
       id: json['id'] ?? 0,
-      brand: json['brand'] != null ? Brand.fromJson(json['brand']) : const Brand(),
-      category: json['category'] != null ? Category.fromJson(json['category']) : const Category(),
+      brand:
+          json['brand'] != null ? Brand.fromJson(json['brand']) : const Brand(),
+      category: json['category'] != null
+          ? Category.fromJson(json['category'])
+          : const Category(),
       discountPrice: json['discount_price'] ?? 0.0,
-      discounts: json['discounts'] != null ? List<Discount>.from(json['discounts'].map((x) => Discount.fromJson(x))) : [],
-      images: json['images'] != null ? List<String>.from(json['images'].map((x) => x)) : [],
+      discounts: json['discounts'] != null
+          ? List<Discount>.from(
+              json['discounts'].map((x) => Discount.fromJson(x)))
+          : [],
+      images: json['images'] != null
+          ? List<String>.from(json['images'].map((x) => x))
+          : [],
       name: json['name'] ?? "",
       price: json['price'] ?? 0,
+      stock: json['stock'] ?? 0,
       description: json['description'] ?? "",
       isDigital: json['is_digital'] ?? false,
     );
@@ -57,10 +60,12 @@ class Product extends ProductEntity {
       'brand': Brand.fromEntity(brand!).toJson(),
       'category': Category.fromEntity(category!).toJson(),
       'discount_price': discountPrice,
-      'discounts': discounts!.map((x) => Discount.fromEntity(x).toJson()).toList(),
+      'discounts':
+          discounts!.map((x) => Discount.fromEntity(x).toJson()).toList(),
       'images': images,
       'name': name,
       'price': price,
+      'stock': stock,
       'description': description,
       'is_digital': isDigital,
     };

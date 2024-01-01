@@ -67,7 +67,7 @@ class _AllProductListWidgetState extends State<AllProductListWidget> {
                 const SizedBox(width: 10),
                 Expanded(
                     flex: 2,
-                    child: Text("10/200",
+                    child: Text("${product.stock}",
                         textAlign: TextAlign.start,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,

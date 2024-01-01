@@ -5,15 +5,15 @@ import 'package:project_romance/features/inventory_management/presentation/pages
 import 'package:project_romance/features/inventory_management/presentation/pages/product/product_detail/product_detail_screen.dart';
 import 'package:project_romance/features/layout/presentation/pages/home/home_layout.dart';
 import 'package:project_romance/features/layout/presentation/pages/home/sub_menu_widgets/inventory_sub_menu.dart';
-import 'package:project_romance/features/support/presentation/pages/support_layout.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/support_layout.dart';
 
 import '../../features/guide/welcome/pages/welcome_screen.dart';
 import '../../features/inventory_management/presentation/pages/category/all_categories/all_categories_screen.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
-final GlobalKey<NavigatorState> shellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shell');
+// final GlobalKey<NavigatorState> shellNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 class AppPages {
   static final GoRouter router = GoRouter(
@@ -33,7 +33,6 @@ class AppPages {
         },
         branches: <StatefulShellBranch>[
           StatefulShellBranch(
-            navigatorKey: shellNavigatorKey,
             routes: <RouteBase>[
               GoRoute(
                 name: AppRoutes.welcome,
@@ -88,7 +87,6 @@ class AppPages {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: shellNavigatorKey,
             routes: <RouteBase>[
               GoRoute(
                 name: AppRoutes.support,

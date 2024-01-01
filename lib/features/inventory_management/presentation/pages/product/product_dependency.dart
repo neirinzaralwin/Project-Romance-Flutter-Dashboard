@@ -7,8 +7,14 @@ import 'all_products/bloc/all_product_bloc.dart';
 class ProductDependency {
   static void register() {
     // Check if GetAllProductUseCase is already registered
-    if (!sl.isRegistered<GetAllProductUseCase>()) sl.registerSingleton<GetAllProductUseCase>(GetAllProductUseCase(sl<InventoryRepository>()));
+    if (!sl.isRegistered<GetAllProductUseCase>()) {
+      sl.registerSingleton<GetAllProductUseCase>(
+          GetAllProductUseCase(sl<InventoryRepository>()));
+    }
     // Check if AllProductBloc is already registered
-    if (!sl.isRegistered<AllProductBloc>()) sl.registerFactory<AllProductBloc>(() => AllProductBloc(sl<GetAllProductUseCase>()));
+    if (!sl.isRegistered<AllProductBloc>()) {
+      sl.registerFactory<AllProductBloc>(
+          () => AllProductBloc(sl<GetAllProductUseCase>()));
+    }
   }
 }

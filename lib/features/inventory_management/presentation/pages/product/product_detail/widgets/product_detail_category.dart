@@ -72,6 +72,19 @@ class _ProductDetailCategoryState extends State<ProductDetailCategory> {
                           ],
                         );
                       },
+                      headerBuilder: (context, item) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              item,
+                              style: bodyMedium.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColor.charcoal),
+                            )
+                          ],
+                        );
+                      },
                       errorStyle: bodyMedium.copyWith(color: AppColor.redColor),
                       excludeSelected: true,
                       noResultFoundText: "No category found",

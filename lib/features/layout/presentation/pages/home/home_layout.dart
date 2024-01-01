@@ -82,6 +82,10 @@ class HomeLayout extends StatelessWidget {
                                     icon: FaIcon(FontAwesomeIcons.box),
                                     label: Text("Inventory"),
                                   ),
+                                  NavigationRailDestination(
+                                    icon: FaIcon(FontAwesomeIcons.circleInfo),
+                                    label: Text("About us"),
+                                  ),
                                   // NavigationRailDestination(
                                   //   icon: FaIcon(FontAwesomeIcons.chartLine),
                                   //   label: Text("Reports"),
@@ -113,6 +117,7 @@ class HomeLayout extends StatelessWidget {
             ),
             Expanded(
                 child: AnimatedBranchContainer(
+              key: ValueKey<int>(navigationShell.currentIndex),
               currentIndex: navigationShell.currentIndex,
               children: children,
             )),
