@@ -24,3 +24,17 @@ class AllContactsSuccess extends SupportState {
 class AllContactsError extends SupportState {
   const AllContactsError(DioException exception) : super(exception: exception);
 }
+
+// create contact states
+class ContactCreationLoading extends SupportState {
+  const ContactCreationLoading();
+}
+
+class ContactCreationSuccess extends SupportState {
+  const ContactCreationSuccess();
+}
+
+class ContactCreationError extends SupportState {
+  const ContactCreationError(DioException exception)
+      : super(exception: exception);
+}

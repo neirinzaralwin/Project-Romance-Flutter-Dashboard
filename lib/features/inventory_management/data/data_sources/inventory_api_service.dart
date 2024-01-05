@@ -1,5 +1,6 @@
 import 'package:project_romance/core/constants/api_constants.dart';
 import 'package:project_romance/features/inventory_management/data/models/category/paginated_all_category.dart';
+import 'package:project_romance/features/inventory_management/data/models/product/product.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
@@ -12,6 +13,9 @@ abstract class InventoryApiService {
 
   @GET(ApiConst.allProducts)
   Future<HttpResponse<PaginatedAllProduct>> getAllProducts();
+
+  @GET("${ApiConst.allProducts}/?id={id}")
+  Future<HttpResponse<Product>> getProductDetail(@Path("id") int id);
 
   @GET(ApiConst.allCategories)
   Future<HttpResponse<PaginatedAllCategory>> getAllCategories();

@@ -9,6 +9,7 @@ import 'package:project_romance/features/customer_support/presentation/pages/sup
 import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_event.dart';
 import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_state.dart';
 import 'new_contact_dialog.dart';
+import 'support_action_text_field.dart';
 
 class SupportContactUsWidget extends StatelessWidget {
   const SupportContactUsWidget({super.key});
@@ -49,11 +50,27 @@ class SupportContactUsWidget extends StatelessWidget {
                   child: Center(child: CupertinoActivityIndicator()));
             }
             if (state is AllContactsSuccess) {
-              return SizedBox(
-                  height: 100,
-                  child: Center(
-                      child:
-                          Text(state.contacts?.first.name ?? "No contacts")));
+              if (state.contacts!.isNotEmpty) {
+                return ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.contacts?.length,
+                    itemBuilder: (context, index) {
+                      var contact = state.contacts![index];
+                      return SizedBox(
+                        height: 100,
+                        child: ActionTextField(
+                            icon: contactTypeMapper(contact.contactType),
+                            text: contact.name ?? "",
+                            hint: contact.name ?? "",
+                            value: contact.value ?? "",
+                            onDelete: () {}),
+                      );
+                    });
+              }
+              return const SizedBox(
+                height: 100,
+                child: Text("No contact yet"),
+              );
             }
             if (state is AllContactsError) {
               return SizedBox(
@@ -87,8 +104,6 @@ class SupportContactUsWidget extends StatelessWidget {
             onPressed: () => _showAddContactDialog(context),
           ),
           const SizedBox(height: 10),
-          // ActionTextField(text: "Email", hint: "Email", onDelete: () {}),
-          // const SizedBox(height: 10),
         ],
       ),
     );
@@ -100,5 +115,22 @@ class SupportContactUsWidget extends StatelessWidget {
         builder: (BuildContext context) {
           return const NewContactDialog();
         });
+  }
+
+  contactTypeMapper(String? contactType) {
+    switch (contactType) {
+      case "FACEBOOK":
+        return FontAwesomeIcons.facebook;
+      case "MESSENGER":
+        return FontAwesomeIcons.facebookMessenger;
+      case "TELEGRAM":
+        return FontAwesomeIcons.telegram;
+      case "VIBER":
+        return FontAwesomeIcons.viber;
+      case "PHONE":
+        return FontAwesomeIcons.mobile;
+      default:
+        return FontAwesomeIcons.envelope;
+    }
   }
 }

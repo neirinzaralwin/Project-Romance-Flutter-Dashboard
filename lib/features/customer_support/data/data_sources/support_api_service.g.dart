@@ -21,20 +21,20 @@ class _SupportApiService implements SupportApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<AllContacts>> getAllContacts() async {
+  Future<HttpResponse<List<Contact>>> getAllContacts() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<AllContacts>>(Options(
+    final _result = await _dio.fetch<List<dynamic>>(
+        _setStreamType<HttpResponse<List<Contact>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'product/',
+              'contacts/',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -43,7 +43,39 @@ class _SupportApiService implements SupportApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = AllContacts.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => Contact.fromJson(i as Map<String, dynamic>))
+        .toList();
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<Contact>> createContact(
+      CreateContactRequestModel request) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(request.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<Contact>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'contacts/create/',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = Contact.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

@@ -5,3 +5,7 @@ abstract class AllProductEvent {
 class GetAllProductsEvent extends AllProductEvent {
   const GetAllProductsEvent();
 }
+
+class GetProductDetailEvent extends AllProductEvent {
+  const GetProductDetailEvent();
+}

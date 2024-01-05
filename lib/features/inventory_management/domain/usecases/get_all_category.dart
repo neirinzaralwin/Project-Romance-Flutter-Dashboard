@@ -4,13 +4,14 @@ import 'package:project_romance/features/inventory_management/data/models/catego
 
 import '../repositories/inventory_repository.dart';
 
-class GetAllCategoryUseCase implements UseCase<DataState<PaginatedAllCategory>, void> {
+class GetAllCategoryUseCase
+    implements UseCaseWithoutParams<DataState<PaginatedAllCategory>> {
   final InventoryRepository _inventoryRepository;
 
   GetAllCategoryUseCase(this._inventoryRepository);
 
   @override
-  Future<DataState<PaginatedAllCategory>> call({void params}) {
+  Future<DataState<PaginatedAllCategory>> call() {
     return _inventoryRepository.getAllCategory();
   }
 }

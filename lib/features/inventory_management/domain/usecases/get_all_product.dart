@@ -3,13 +3,14 @@ import 'package:project_romance/features/inventory_management/data/models/produc
 import 'package:project_romance/features/inventory_management/domain/repositories/inventory_repository.dart';
 import '../../../../core/usecases/usecase.dart';
 
-class GetAllProductUseCase implements UseCase<DataState<PaginatedAllProduct>, void> {
+class GetAllProductUseCase
+    implements UseCaseWithoutParams<DataState<PaginatedAllProduct>> {
   final InventoryRepository _inventoryRepository;
 
   GetAllProductUseCase(this._inventoryRepository);
 
   @override
-  Future<DataState<PaginatedAllProduct>> call({void params}) {
+  Future<DataState<PaginatedAllProduct>> call() {
     return _inventoryRepository.getAllProducts();
   }
 }

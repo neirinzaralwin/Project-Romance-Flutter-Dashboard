@@ -4,6 +4,9 @@ import 'package:project_romance/core/shared_components/buttons/custom_elevated_b
 import 'package:project_romance/core/shared_components/custom_text_field.dart';
 import 'package:project_romance/core/shared_components/drop_downs/custom_search_dropdown.dart';
 import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
+import 'package:project_romance/core/shared_functions/case_extensions.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/enum/contact_type_enum.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/ui_models/create_contact_request_model.dart';
 
 class NewContactDialog extends StatefulWidget {
   const NewContactDialog({super.key});
@@ -13,7 +16,7 @@ class NewContactDialog extends StatefulWidget {
 }
 
 class _NewContactDialogState extends State<NewContactDialog> {
-  String dropdownValue = "";
+  String type = "";
   final contactNameTextController = TextEditingController();
   final contactInfoTextController = TextEditingController();
 
@@ -31,7 +34,9 @@ class _NewContactDialogState extends State<NewContactDialog> {
               Text("Contact type", style: bodyMedium),
               const SizedBox(height: 10),
               CustomSearchDropDown(
-                items: const ["FACEBOOK", "MESSENGER"],
+                items: ContactTypes.values
+                    .map((e) => e.name.toTitleCase())
+                    .toList(),
                 hintColor: AppColor.primaryColor,
                 textColor: AppColor.charcoal,
                 selectedTextColor: AppColor.greenDark,
@@ -40,7 +45,7 @@ class _NewContactDialogState extends State<NewContactDialog> {
                 hintText: "Select a type",
                 onChanged: (value) {
                   setState(() {
-                    dropdownValue = value;
+                    type = value;
                     contactNameTextController.text = value;
                   });
                 },
@@ -53,11 +58,11 @@ class _NewContactDialogState extends State<NewContactDialog> {
                 hint: "Contact name",
                 controller: contactNameTextController,
                 validator: null,
-                fillColor: dropdownValue.isNotEmpty
+                fillColor: type.isNotEmpty
                     ? AppColor.mildWhite
                     : AppColor.secondaryColor,
                 cursorColor: AppColor.primaryColor,
-                isEnabled: dropdownValue.isNotEmpty,
+                isEnabled: type.isNotEmpty,
                 enableBorder: false,
               ),
               const SizedBox(height: 10),
@@ -66,11 +71,11 @@ class _NewContactDialogState extends State<NewContactDialog> {
                 hint: "Information",
                 controller: contactInfoTextController,
                 validator: null,
-                fillColor: dropdownValue.isNotEmpty
+                fillColor: type.isNotEmpty
                     ? AppColor.mildWhite
                     : AppColor.secondaryColor,
                 cursorColor: AppColor.primaryColor,
-                isEnabled: dropdownValue.isNotEmpty,
+                isEnabled: type.isNotEmpty,
                 enableBorder: false,
               ),
               const SizedBox(height: 10),
@@ -81,18 +86,24 @@ class _NewContactDialogState extends State<NewContactDialog> {
       actions: <Widget>[
         CustomElevatedButton(
             text: "Save",
-            onPressed: () {
-              _clearValues();
-            },
+            onPressed: _save,
             color: AppColor.greenDark,
             textColor: AppColor.white)
       ],
     );
   }
 
+  void _save() {
+    final request = CreateContactRequestModel(
+        name: contactNameTextController.text,
+        value: contactInfoTextController.text,
+        contactType: type.toUpperCase());
+    _clearValues();
+  }
+
   _clearValues() {
     contactNameTextController.clear();
     contactInfoTextController.clear();
-    dropdownValue = "";
+    type = "";
   }
 }

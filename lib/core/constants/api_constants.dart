@@ -5,5 +5,10 @@ class ApiConst {
 
   // Inventory
   static const String allProducts = "product/";
+  static const String allProductDetail = "product/detail/";
   static const String allCategories = "category/";
+
+  // Support
+  static const String allContacts = "contacts/";
+  static const String createContact = "contacts/create/";
 }
