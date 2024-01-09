@@ -49,7 +49,7 @@ class _InventoryApiService implements InventoryApiService {
   }
 
   @override
-  Future<HttpResponse<Product>> getProductDetail(int productId) async {
+  Future<HttpResponse<Product>> getProductDetail(int id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -62,7 +62,7 @@ class _InventoryApiService implements InventoryApiService {
     )
             .compose(
               _dio.options,
-              'product//${productId}',
+              'product//?id=${id}',
               queryParameters: queryParameters,
               data: _data,
             )

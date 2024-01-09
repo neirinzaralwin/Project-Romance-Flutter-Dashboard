@@ -12,3 +12,14 @@ class CreateContactEvent extends SupportEvent {
   CreateContactRequestModel request;
   CreateContactEvent(this.request);
 }
+
+class DeleteContactEvent extends SupportEvent {
+  int id;
+  DeleteContactEvent(this.id);
+}
+
+class UpdateContactEvent extends SupportEvent {
+  int id;
+  String value;
+  UpdateContactEvent(this.id, this.value);
+}

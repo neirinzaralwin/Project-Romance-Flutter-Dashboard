@@ -69,7 +69,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       obscureText: widget.isPassword ? isObscure : false,
       maxLines: widget.maxLine ?? 1,
       enabled: widget.isEnabled,
-      style: TextStyle(color: widget.textColor),
+      style: bodyMedium.copyWith(color: widget.textColor),
       decoration: widget.enableBorder!
           ? InputDecoration(
               fillColor: widget.fillColor ?? AppColor.swatch,

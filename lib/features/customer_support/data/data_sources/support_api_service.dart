@@ -15,4 +15,11 @@ abstract class SupportApiService {
   @POST(ApiConst.createContact)
   Future<HttpResponse<Contact>> createContact(
       @Body() CreateContactRequestModel request);
+
+  @DELETE("${ApiConst.allContacts}{id}/")
+  Future<HttpResponse> deleteContact(@Path("id") int id);
+
+  @PATCH("${ApiConst.allContacts}{id}/")
+  Future<HttpResponse> updateContact(
+      @Path("id") int id, @Body() Map<String, dynamic> map);
 }

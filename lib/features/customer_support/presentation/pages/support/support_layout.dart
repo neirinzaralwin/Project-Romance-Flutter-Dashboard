@@ -10,7 +10,7 @@ import 'widgets/support_description_widget.dart';
 
 class SupportLayout extends StatefulWidget {
   const SupportLayout({super.key});
-
+  static final supportLayoutKey = GlobalKey<ScaffoldState>();
   @override
   State<SupportLayout> createState() => _SupportLayoutState();
 }
@@ -23,6 +23,7 @@ class _SupportLayoutState extends State<SupportLayout> {
     return BlocProvider<SupportBloc>(
       create: (context) => sl<SupportBloc>()..add(const GetAllContactsEvent()),
       child: Scaffold(
+          key: SupportLayout.supportLayoutKey,
           backgroundColor: AppColor.scaffoldBackgroundColor,
           body: SingleChildScrollView(
             child: Column(

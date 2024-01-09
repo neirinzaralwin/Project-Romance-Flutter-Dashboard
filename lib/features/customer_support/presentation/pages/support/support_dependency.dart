@@ -1,7 +1,9 @@
 import 'package:project_romance/di/service_locator.dart';
 import 'package:project_romance/features/customer_support/domain/repositories/support_repository.dart';
 import 'package:project_romance/features/customer_support/domain/usecases/create_contact.dart';
+import 'package:project_romance/features/customer_support/domain/usecases/delete_contact.dart';
 import 'package:project_romance/features/customer_support/domain/usecases/get_all_contacts.dart';
+import 'package:project_romance/features/customer_support/domain/usecases/update_contact.dart';
 import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_bloc.dart';
 
 class SupportDependency {
@@ -14,10 +16,21 @@ class SupportDependency {
       sl.registerSingleton<CreateContactUseCase>(
           CreateContactUseCase(sl<SupportRepository>()));
     }
+    if (!sl.isRegistered<DeleteContactUseCase>()) {
+      sl.registerSingleton<DeleteContactUseCase>(
+          DeleteContactUseCase(sl<SupportRepository>()));
+    }
+    if (!sl.isRegistered<UpdateContactUseCase>()) {
+      sl.registerSingleton<UpdateContactUseCase>(
+          UpdateContactUseCase(sl<SupportRepository>()));
+    }
 
     if (!sl.isRegistered<SupportBloc>()) {
-      sl.registerFactory<SupportBloc>(() =>
-          SupportBloc(sl<GetAllContactsUseCase>(), sl<CreateContactUseCase>()));
+      sl.registerFactory<SupportBloc>(() => SupportBloc(
+          sl<GetAllContactsUseCase>(),
+          sl<CreateContactUseCase>(),
+          sl<DeleteContactUseCase>(),
+          sl<UpdateContactUseCase>()));
     }
   }
 }

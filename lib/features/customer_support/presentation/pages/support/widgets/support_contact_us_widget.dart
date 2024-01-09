@@ -8,11 +8,24 @@ import 'package:project_romance/core/shared_components/text_style/custom_text_st
 import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_bloc.dart';
 import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_event.dart';
 import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_state.dart';
+import '../enum/contact_type_enum.dart';
 import 'new_contact_dialog.dart';
 import 'support_action_text_field.dart';
 
-class SupportContactUsWidget extends StatelessWidget {
+class SupportContactUsWidget extends StatefulWidget {
   const SupportContactUsWidget({super.key});
+
+  @override
+  State<SupportContactUsWidget> createState() => _SupportContactUsWidgetState();
+}
+
+class _SupportContactUsWidgetState extends State<SupportContactUsWidget> {
+  late SupportBloc currentBloc;
+  bool canEdit = false;
+  bool canSave = false;
+  late int? currentFocusIndex;
+  late int? currentFocusId;
+  String changedValue = "";
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +47,22 @@ class SupportContactUsWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Contact information",
-            style: headlineSmall.copyWith(fontWeight: FontWeight.bold),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Contact information",
+                style: headlineSmall.copyWith(fontWeight: FontWeight.bold),
+              ),
+              IconButton.filledTonal(
+                  onPressed: () {
+                    _showAddContactDialog(context, currentBloc);
+                  },
+                  icon: const FaIcon(
+                    FontAwesomeIcons.circlePlus,
+                    color: AppColor.greenDark,
+                  ))
+            ],
           ),
           Text(
             "Customers want to contact through",
@@ -44,6 +70,7 @@ class SupportContactUsWidget extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           BlocBuilder<SupportBloc, SupportState>(builder: (context, state) {
+            currentBloc = BlocProvider.of<SupportBloc>(context);
             if (state is AllContactsLoading) {
               return const SizedBox(
                   height: 100,
@@ -56,22 +83,51 @@ class SupportContactUsWidget extends StatelessWidget {
                     itemCount: state.contacts?.length,
                     itemBuilder: (context, index) {
                       var contact = state.contacts![index];
-                      return SizedBox(
-                        height: 100,
+                      bool isThisFieldEnable =
+                          (canEdit == true && currentFocusIndex == index);
+
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: ActionTextField(
-                            icon: contactTypeMapper(contact.contactType),
-                            text: contact.name ?? "",
-                            hint: contact.name ?? "",
-                            value: contact.value ?? "",
-                            onDelete: () {}),
+                          isDisable: !isThisFieldEnable,
+                          icon: contactTypeMapper(contact.contactType),
+                          text: contact.name ?? "",
+                          hint: contact.name ?? "",
+                          value: contact.value ?? "",
+                          onPressed: () {
+                            // some field is editing need to save
+                            if (!canSave) {
+                              setState(() {
+                                currentFocusIndex = index;
+                                currentFocusId = contact.id ?? 0;
+                                canEdit = true;
+                              });
+                            }
+                          },
+                          onDelete: () {
+                            if (!canSave) {
+                              currentBloc
+                                  .add(DeleteContactEvent(contact.id ?? 0));
+                            }
+                          },
+                          onChanged: (newValue) {
+                            if (newValue != contact.value) {
+                              setState(() {
+                                changedValue = newValue;
+                                canSave = true;
+                              });
+                            }
+                          },
+                        ),
                       );
                     });
               }
-              return const SizedBox(
+              return SizedBox(
                 height: 100,
-                child: Text("No contact yet"),
+                child: Center(child: Text("No contact yet", style: bodyMedium)),
               );
             }
+
             if (state is AllContactsError) {
               return SizedBox(
                   height: 100,
@@ -82,8 +138,8 @@ class SupportContactUsWidget extends StatelessWidget {
                       const Row(),
                       Text(state.exception?.message ?? "Something went wrong"),
                       IconButton(
-                          onPressed: () => BlocProvider.of<SupportBloc>(context)
-                              .add(const GetAllContactsEvent()),
+                          onPressed: () =>
+                              currentBloc.add(const GetAllContactsEvent()),
                           icon:
                               const FaIcon(FontAwesomeIcons.arrowRotateRight)),
                     ],
@@ -93,44 +149,33 @@ class SupportContactUsWidget extends StatelessWidget {
             return Container();
           }),
           CustomElevatedButton(
-            text: "New",
-            icon: Icons.add,
-            iconSize: bodyLarge.fontSize,
-            color: AppColor.mildGreen,
-            textColor: AppColor.black,
-            iconColor: AppColor.black,
-            verticalPadding: 5,
-            borderColor: AppColor.greenColor,
-            onPressed: () => _showAddContactDialog(context),
-          ),
+              text: "Save",
+              isDisabled: !canSave,
+              onPressed: _onsave,
+              color: AppColor.greenDark,
+              textColor: AppColor.white),
           const SizedBox(height: 10),
         ],
       ),
     );
   }
 
-  void _showAddContactDialog(context) {
+  void _showAddContactDialog(context, currentBloc) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
-          return const NewContactDialog();
+          return NewContactDialog(bloc: currentBloc);
         });
   }
 
-  contactTypeMapper(String? contactType) {
-    switch (contactType) {
-      case "FACEBOOK":
-        return FontAwesomeIcons.facebook;
-      case "MESSENGER":
-        return FontAwesomeIcons.facebookMessenger;
-      case "TELEGRAM":
-        return FontAwesomeIcons.telegram;
-      case "VIBER":
-        return FontAwesomeIcons.viber;
-      case "PHONE":
-        return FontAwesomeIcons.mobile;
-      default:
-        return FontAwesomeIcons.envelope;
-    }
+  void _onsave() {
+    currentBloc.add(UpdateContactEvent(currentFocusId!, changedValue));
+    setState(() {
+      canEdit = false;
+      canSave = false;
+      currentFocusIndex = null;
+      currentFocusId = null;
+      changedValue = "";
+    });
   }
 }
