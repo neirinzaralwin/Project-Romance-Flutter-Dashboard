@@ -1,4 +1,5 @@
 import 'package:project_romance/core/constants/api_constants.dart';
+import 'package:project_romance/features/customer_support/data/models/contact/about_us.dart';
 import 'package:project_romance/features/customer_support/data/models/contact/contact.dart';
 import 'package:project_romance/features/customer_support/presentation/pages/support/ui_models/create_contact_request_model.dart';
 import 'package:retrofit/retrofit.dart';
@@ -22,4 +23,11 @@ abstract class SupportApiService {
   @PATCH("${ApiConst.allContacts}{id}/")
   Future<HttpResponse> updateContact(
       @Path("id") int id, @Body() Map<String, dynamic> map);
+
+  // ------------------------- about us description  -------------------------
+  @GET(ApiConst.aboutUs)
+  Future<HttpResponse<AboutUs>> getAboutUs();
+
+  @PATCH(ApiConst.aboutUs)
+  Future<HttpResponse> updateAboutUs(@Body() Map<String, dynamic> map);
 }

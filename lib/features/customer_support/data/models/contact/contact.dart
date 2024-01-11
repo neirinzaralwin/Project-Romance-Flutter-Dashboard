@@ -2,20 +2,13 @@ import 'package:project_romance/features/customer_support/domain/entities/contac
 
 class Contact extends ContactEntity {
   const Contact({
-    int? id,
-    String? name,
-    String? value,
-    String? contactType,
-    DateTime? createdAt,
-    DateTime? updatedAt,
-  }) : super(
-          id: id,
-          name: name,
-          value: value,
-          contactType: contactType,
-          createdAt: createdAt,
-          updatedAt: updatedAt,
-        );
+    super.id,
+    super.name,
+    super.value,
+    super.contactType,
+    super.createdAt,
+    super.updatedAt,
+  });
 
   factory Contact.fromJson(Map<String, dynamic> json) {
     return Contact(

@@ -11,4 +11,5 @@ class ApiConst {
   // Support
   static const String allContacts = "contacts/";
   static const String createContact = "contacts/create/";
+  static const String aboutUs = "contacts/about-us/";
 }

@@ -2,9 +2,12 @@ import 'package:project_romance/di/service_locator.dart';
 import 'package:project_romance/features/customer_support/domain/repositories/support_repository.dart';
 import 'package:project_romance/features/customer_support/domain/usecases/create_contact.dart';
 import 'package:project_romance/features/customer_support/domain/usecases/delete_contact.dart';
+import 'package:project_romance/features/customer_support/domain/usecases/get_about_us.dart';
 import 'package:project_romance/features/customer_support/domain/usecases/get_all_contacts.dart';
+import 'package:project_romance/features/customer_support/domain/usecases/update_about_us.dart';
 import 'package:project_romance/features/customer_support/domain/usecases/update_contact.dart';
-import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_bloc.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/widgets/about_us/bloc/about_us_bloc.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/widgets/contact_us/bloc/support_bloc.dart';
 
 class SupportDependency {
   static void register() {
@@ -31,6 +34,22 @@ class SupportDependency {
           sl<CreateContactUseCase>(),
           sl<DeleteContactUseCase>(),
           sl<UpdateContactUseCase>()));
+    }
+
+    // about us
+    if (!sl.isRegistered<GetAboutUsUseCase>()) {
+      sl.registerSingleton<GetAboutUsUseCase>(
+          GetAboutUsUseCase(sl<SupportRepository>()));
+    }
+
+    if (!sl.isRegistered<UpdateAboutUsUseCase>()) {
+      sl.registerSingleton<UpdateAboutUsUseCase>(
+          UpdateAboutUsUseCase(sl<SupportRepository>()));
+    }
+
+    if (!sl.isRegistered<AboutUsBloc>()) {
+      sl.registerFactory<AboutUsBloc>(() =>
+          AboutUsBloc(sl<GetAboutUsUseCase>(), sl<UpdateAboutUsUseCase>()));
     }
   }
 }

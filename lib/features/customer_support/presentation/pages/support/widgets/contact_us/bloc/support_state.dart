@@ -12,6 +12,14 @@ abstract class SupportState extends Equatable {
   List<Object> get props => [contacts!, exception!];
 }
 
+class SupportLoading extends SupportState {
+  const SupportLoading();
+}
+
+// class SupportDone extends SupportState {
+//   const SupportDone();
+// }
+
 class AllContactsLoading extends SupportState {
   const AllContactsLoading();
 }
@@ -38,3 +46,16 @@ class ContactCreationError extends SupportState {
   const ContactCreationError(DioException exception)
       : super(exception: exception);
 }
+
+// class AboutUsLoading extends SupportState {
+//   const AboutUsLoading();
+// }
+
+// class AboutUsSuccess extends SupportState {
+//   const AboutUsSuccess(AboutUsEntity aboutUs)
+//       : super(aboutUs: aboutUs);
+// }
+
+// class AboutUsError extends SupportState {
+//   const AboutUsError(DioException exception) : super(exception: exception);
+// }

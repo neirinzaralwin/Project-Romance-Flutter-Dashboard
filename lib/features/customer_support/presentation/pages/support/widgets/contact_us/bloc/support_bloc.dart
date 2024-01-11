@@ -18,9 +18,12 @@ class SupportBloc extends Bloc<SupportEvent, SupportState> {
   final DeleteContactUseCase _deleteContactUseCase;
   final UpdateContactUseCase _updateContactUseCase;
 
-  SupportBloc(this._getAllContactsUseCase, this._createContactUseCase,
-      this._deleteContactUseCase, this._updateContactUseCase)
-      : super(const AllContactsLoading()) {
+  SupportBloc(
+    this._getAllContactsUseCase,
+    this._createContactUseCase,
+    this._deleteContactUseCase,
+    this._updateContactUseCase,
+  ) : super(const AllContactsLoading()) {
     on<GetAllContactsEvent>(onGetAllContact);
     on<CreateContactEvent>(onCreateContact);
     on<DeleteContactEvent>(onDeleteContact);

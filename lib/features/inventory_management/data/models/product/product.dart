@@ -5,30 +5,18 @@ import 'package:project_romance/features/inventory_management/domain/entities/pr
 
 class Product extends ProductEntity {
   const Product({
-    int? id,
-    Brand? brand,
-    Category? category,
-    double? discountPrice,
-    List<Discount>? discounts,
-    List<String>? images,
-    String? name,
-    int? price,
-    int? stock,
-    String? description,
-    bool? isDigital,
-  }) : super(
-          id: id,
-          brand: brand,
-          category: category,
-          discountPrice: discountPrice,
-          discounts: discounts,
-          images: images,
-          name: name,
-          price: price,
-          stock: stock,
-          description: description,
-          isDigital: isDigital,
-        );
+    super.id,
+    super.brand,
+    super.category,
+    super.discountPrice,
+    super.discounts,
+    super.images,
+    super.name,
+    super.price,
+    super.stock,
+    super.description,
+    super.isDigital,
+  });
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(

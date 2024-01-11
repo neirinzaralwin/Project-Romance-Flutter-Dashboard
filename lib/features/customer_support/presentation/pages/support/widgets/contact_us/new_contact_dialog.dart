@@ -6,9 +6,9 @@ import 'package:project_romance/core/shared_components/custom_text_field.dart';
 import 'package:project_romance/core/shared_components/drop_downs/custom_search_dropdown.dart';
 import 'package:project_romance/core/shared_components/text_style/custom_text_style.dart';
 import 'package:project_romance/core/shared_functions/case_extensions.dart';
-import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_bloc.dart';
-import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_event.dart';
-import 'package:project_romance/features/customer_support/presentation/pages/support/bloc/support_state.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/widgets/contact_us/bloc/support_bloc.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/widgets/contact_us/bloc/support_event.dart';
+import 'package:project_romance/features/customer_support/presentation/pages/support/widgets/contact_us/bloc/support_state.dart';
 import 'package:project_romance/features/customer_support/presentation/pages/support/enum/contact_type_enum.dart';
 import 'package:project_romance/features/customer_support/presentation/pages/support/ui_models/create_contact_request_model.dart';
 
