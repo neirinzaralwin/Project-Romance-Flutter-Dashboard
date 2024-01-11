@@ -14,6 +14,10 @@ dependencies:
   font_awesome_flutter: ^10.6.0
   google_fonts: ^6.1.0
 
+  # html editor for all platforms
+  # visual_editor:
+  #   git: https://github.com/visual-space/visual-editor.git
+
   # Navigation 2.0
   go_router: ^12.1.1
 

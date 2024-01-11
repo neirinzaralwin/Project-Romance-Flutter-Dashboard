@@ -41,8 +41,8 @@ class _SupportLayoutState extends State<SupportLayout> {
                 const SizedBox(height: 10),
                 const Wrap(
                   children: [
-                    SupportDescriptionWidget(),
                     SupportContactUsWidget(),
+                    SupportDescriptionWidget(),
                   ],
                 ),
                 const SizedBox(height: 50),
